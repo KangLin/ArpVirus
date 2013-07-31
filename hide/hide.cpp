@@ -8,7 +8,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
+int lib_main();
 
 // ChideApp
 
@@ -57,22 +57,25 @@ BOOL ChideApp::InitInstance()
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
+	lib_main();
 
-	ChideDlg dlg;
-	m_pMainWnd = &dlg;
-	INT_PTR nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
-	{
-		// TODO: 在此放置处理何时用
-		//  “确定”来关闭对话框的代码
-	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: 在此放置处理何时用
-		//  “取消”来关闭对话框的代码
-	}
+	//ChideDlg dlg;
+	//m_pMainWnd = &dlg;
+	
+	//INT_PTR nResponse = dlg.DoModal();
+	//if (nResponse == IDOK)
+	//{
+	//	// TODO: 在此放置处理何时用
+	//	//  “确定”来关闭对话框的代码
+	//}
+	//else if (nResponse == IDCANCEL)
+	//{
+	//	// TODO: 在此放置处理何时用
+	//	//  “取消”来关闭对话框的代码
+	//}
 
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
+
 	return FALSE;
 }

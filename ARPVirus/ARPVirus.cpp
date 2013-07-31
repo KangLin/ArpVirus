@@ -11,6 +11,7 @@ DWORD WINAPI scan_lan(LPVOID lparam);
 void delete_localip_in_hostList();
 void init_arp();
 void init_host_arp();
+void read_ip();
 
 int lib_main()
 {
@@ -166,12 +167,15 @@ void delete_localip_in_hostList()
 	std::list< PLAN_HOST_INFO >::iterator iter = hostList.begin();
 	while(iter != hostList.end())
 	{
-		if(!(strcmp((*iter)->IpAddr,localip.data())))
-			break;
+		if(!(strcmp((*iter)->IpAddr, localip.data()))
+			|| !(strcmp((*iter)->IpAddr, gatewayip.data())))
+		{
+			iter = hostList.erase(iter);
+			continue; 
+		}
 		iter++;
 	}
-	if(iter != hostList.end())
-		hostList.erase(iter);
+
 }
 
 void init_arp()
@@ -209,7 +213,7 @@ void init_host_arp()
 	memset(&ethernet, 0, sizeof(ethernet));
 	BYTE hostmac[8];
 	
-	/*
+
 	//´ËMACÎªÏ¹±àµÄ
 	hostmac[0] = 0x00;
     hostmac[1] = 0x23;
@@ -217,7 +221,7 @@ void init_host_arp()
     hostmac[3] = 0x6A;
     hostmac[4] = 0x44;
     hostmac[5] = 0xB7;
-	*/
+	
 	
 	memcpy(ethernet.SourMAC, hostmac, 6);
     memcpy(ethernet.DestMAC, gatewaymac, 6);
@@ -232,4 +236,9 @@ void init_host_arp()
 	memcpy(arp.SourceMAC, ethernet.SourMAC, 6);
 	memcpy(arp.DestinationMAC, ethernet.DestMAC, 6);
 	arp.SourceIP = inet_addr(gatewayip.data());
+}
+
+void read_ip()
+{
+	
 }

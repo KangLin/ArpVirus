@@ -16,7 +16,8 @@ unsigned char gatewaymac[6];
 unsigned char localmac[6];
 
 //扫描在线主机
-std::list< PLAN_HOST_INFO > hostList;
+std::list < PLAN_HOST_INFO > hostList;
+std::list< PLAN_HOST_INFO > removeHostList;
 Mutex mutex;
 
 //ARP 

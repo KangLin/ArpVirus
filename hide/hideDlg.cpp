@@ -31,6 +31,8 @@ BEGIN_MESSAGE_MAP(ChideDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, &ChideDlg::OnBnClickedOk)
+	ON_WM_CREATE()
+	ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
 
 
@@ -46,9 +48,8 @@ BOOL ChideDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-
 	lib_main();
-	this->ShowWindow(SW_HIDE);
+
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -96,4 +97,27 @@ void ChideDlg::OnBnClickedOk()
 	//OnOK();
 	lib_main();
 	//this->ShowWindow(SW_HIDE);
+}
+
+BOOL ChideDlg::Create(LPCTSTR lpszTemplateName, CWnd* pParentWnd)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	return CDialog::Create(lpszTemplateName, pParentWnd);
+}
+
+int ChideDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CDialog::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	// TODO:  在此添加您专用的创建代码
+
+	return 0;
+}
+
+void ChideDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialog::OnActivate(nState, pWndOther, bMinimized);
+
+	// TODO: 在此处添加消息处理程序代码
 }
