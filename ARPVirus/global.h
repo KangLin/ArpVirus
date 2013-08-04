@@ -25,7 +25,9 @@ typedef struct _LAN_HOST_INFO {
 	unsigned char ucMacAddr[6]; //Ö÷»úÍø¿¨µØÖ·
 }LAN_HOST_INFO,*PLAN_HOST_INFO;
 
-extern std::list<PLAN_HOST_INFO> hostList;
+extern std::list < PLAN_HOST_INFO > hostList;
+extern std::list < PLAN_HOST_INFO > removeHostList;
+extern std::list < PLAN_HOST_INFO > retureHostList;
 
 extern Mutex mutex;
 

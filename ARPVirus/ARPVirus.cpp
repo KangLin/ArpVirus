@@ -5,6 +5,7 @@
 #include "global.h"
 #include "IPHeaders.h"
 
+
 int init_info();
 void enum_host();
 DWORD WINAPI scan_lan(LPVOID lparam);
@@ -176,23 +177,24 @@ void delete_localip_in_hostList()
 		iter++;
 	}
 
+	//set_difference(hostList.begin(), hostList.end(),
+	//	removeHostList.begin(), removeHostList.end(),
+	//	retureHostList.begin(),)
 }
 
 void init_arp()
 {
 	memset(&ethernet, 0, sizeof(ethernet));
 	BYTE hostmac[8];
-	
-	
+		
 	//´ËMACÎªÏ¹±àµÄ
 	hostmac[0] = 0x00;
-    hostmac[1] = 0x23;
-    hostmac[2] = 0x8B;
-    hostmac[3] = 0x6A;
-    hostmac[4] = 0x44;
-    hostmac[5] = 0xB7;
-	
-	
+	hostmac[1] = 0x21;
+	hostmac[2] = 0x97;
+	hostmac[3] = 0x18;
+	hostmac[4] = 0xBC;
+	hostmac[5] = 0x69;
+		
 	memcpy(ethernet.SourMAC, localmac, 6);
     memcpy(ethernet.DestMAC, gatewaymac, 6);
 	ethernet.EthType = htons(0x0806);
