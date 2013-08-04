@@ -177,9 +177,10 @@ void delete_localip_in_hostList()
 		iter++;
 	}
 
-	//set_difference(hostList.begin(), hostList.end(),
-	//	removeHostList.begin(), removeHostList.end(),
-	//	retureHostList.begin(),)
+	/*std::list < PLAN_HOST_INFO > ::iterator itRet;
+	set_intersection(hostList.begin(), hostList.end(),
+		removeHostList.begin(), removeHostList.end(),
+		retureHostList.begin(),itRet.begin());*/
 }
 
 void init_arp()
