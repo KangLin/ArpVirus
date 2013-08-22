@@ -17,7 +17,11 @@ unsigned char localmac[6];
 
 //扫描在线主机
 std::list < PLAN_HOST_INFO > hostList;
-std::list< PLAN_HOST_INFO > removeHostList;
+std::list < PLAN_HOST_INFO > allHostList;
+std::list < PLAN_HOST_INFO > spoofHostList;
+std::list < PLAN_HOST_INFO > unkownHostList;
+std::list < PLAN_HOST_INFO > retureHostList;
+
 Mutex mutex;
 
 //ARP 

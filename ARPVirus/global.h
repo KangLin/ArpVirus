@@ -26,8 +26,10 @@ typedef struct _LAN_HOST_INFO {
 }LAN_HOST_INFO,*PLAN_HOST_INFO;
 
 extern std::list < PLAN_HOST_INFO > hostList;
-extern std::list < PLAN_HOST_INFO > removeHostList;
+extern std::list < PLAN_HOST_INFO > allHostList;
+extern std::list < PLAN_HOST_INFO > spoofHostList;
 extern std::list < PLAN_HOST_INFO > retureHostList;
+extern std::list < PLAN_HOST_INFO > unkownHostList;
 
 extern Mutex mutex;
 
