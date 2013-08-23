@@ -12,7 +12,7 @@
 #include "pcap.h"
 #include <string>
 #include <Iphlpapi.h>
-#include <winsock2.h>
+//#include <winsock2.h>
 
 #pragma comment(lib, "Iphlpapi.lib")
 #pragma comment(lib, "wpcap.lib")
@@ -20,3 +20,4 @@
 
 
 // TODO: 在此处引用程序需要的其他头文件
+

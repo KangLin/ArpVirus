@@ -15,14 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_40612C283CB44330AD58512B94D31E22"
-        "OwnerKey" = "8:_93841D83E6434FFCBB6BD730DE508C59"
+        "MsmKey" = "8:_1EB20391E1554598B0786B52A57E1011"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_73F6FF0812D647048C59F119199BCE0D"
-        "OwnerKey" = "8:_40612C283CB44330AD58512B94D31E22"
+        "MsmKey" = "8:_310FA2D7899A4905B537A4D124EA0581"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_51ABF4E43F014CCCBBC381FE970DEFB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_89E1A1CE375944B79A56A099DF6AFDCE"
+        "OwnerKey" = "8:_B64CC008FAB94877AD69B9736F7A2620"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -34,25 +46,19 @@
         "Entry"
         {
         "MsmKey" = "8:_9B8A114F28748DC7F1A799A5323FC936"
-        "OwnerKey" = "8:_93841D83E6434FFCBB6BD730DE508C59"
+        "OwnerKey" = "8:_1EB20391E1554598B0786B52A57E1011"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_A9601D9729F9A73D5B50D32EC495DAFC"
-        "OwnerKey" = "8:_93841D83E6434FFCBB6BD730DE508C59"
+        "OwnerKey" = "8:_1EB20391E1554598B0786B52A57E1011"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BC656270387940738566C462A81DB7C5"
-        "OwnerKey" = "8:_D81B396F6B594CC9949EC29CC313D907"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D81B396F6B594CC9949EC29CC313D907"
-        "OwnerKey" = "8:_93841D83E6434FFCBB6BD730DE508C59"
+        "MsmKey" = "8:_B64CC008FAB94877AD69B9736F7A2620"
+        "OwnerKey" = "8:_1EB20391E1554598B0786B52A57E1011"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -80,6 +86,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -104,6 +123,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -126,6 +158,46 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_310FA2D7899A4905B537A4D124EA0581"
+            {
+            "SourcePath" = "8:..\\s.txt"
+            "TargetName" = "8:s.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_77FB561ED82F44AB821DBB6067F0C290"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51ABF4E43F014CCCBBC381FE970DEFB0"
+            {
+            "SourcePath" = "8:..\\all.txt"
+            "TargetName" = "8:all.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_77FB561ED82F44AB821DBB6067F0C290"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B8A114F28748DC7F1A799A5323FC936"
             {
             "SourcePath" = "8:IPHLPAPI.DLL"
@@ -738,35 +810,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_40612C283CB44330AD58512B94D31E22"
-            {
-            "UseDynamicProperties" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:policy_9_0_Microsoft_VC90_DebugMFC_x86.msm"
-                "Properties"
-                {
-                }
-            "LanguageId" = "3:0"
-            "Exclude" = "11:FALSE"
-            "Folder" = "8:"
-            "Feature" = "8:"
-            "IsolateTo" = "8:"
-            }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_73F6FF0812D647048C59F119199BCE0D"
-            {
-            "UseDynamicProperties" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:microsoft_vc90_debugmfc_x86.msm"
-                "Properties"
-                {
-                }
-            "LanguageId" = "3:0"
-            "Exclude" = "11:FALSE"
-            "Folder" = "8:"
-            "Feature" = "8:"
-            "IsolateTo" = "8:"
-            }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_BC656270387940738566C462A81DB7C5"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_89E1A1CE375944B79A56A099DF6AFDCE"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -780,7 +824,7 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_D81B396F6B594CC9949EC29CC313D907"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B64CC008FAB94877AD69B9736F7A2620"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -797,6 +841,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1EB20391E1554598B0786B52A57E1011"
+            {
+            "SourcePath" = "8:..\\Debug\\ARPVirus.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_77FB561ED82F44AB821DBB6067F0C290"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{2D23750B-085C-4E78-BAF7-39ED3806ED91}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_93841D83E6434FFCBB6BD730DE508C59"
             {
             "SourcePath" = "8:..\\Debug\\hide.exe"

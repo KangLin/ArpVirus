@@ -2,7 +2,7 @@
 
 
 #include <string>
-#include <windows.h>
+
 
 class Mutex
 {

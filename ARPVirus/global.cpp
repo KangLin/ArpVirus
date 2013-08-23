@@ -19,8 +19,7 @@ unsigned char localmac[6];
 std::list < PLAN_HOST_INFO > hostList;
 std::list < PLAN_HOST_INFO > allHostList;
 std::list < PLAN_HOST_INFO > spoofHostList;
-std::list < PLAN_HOST_INFO > unkownHostList;
-std::list < PLAN_HOST_INFO > retureHostList;
+
 
 Mutex mutex;
 
