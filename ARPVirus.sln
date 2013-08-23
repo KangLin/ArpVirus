@@ -5,11 +5,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARPVirus", "ARPVirus\ARPVir
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{6CEBDBE1-C42B-41F1-A643-4C15FA95C968}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hide", "hide\hide.vcproj", "{381F0A97-D3CB-4EDF-A940-7BF40FA937E3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2D23750B-085C-4E78-BAF7-39ED3806ED91} = {2D23750B-085C-4E78-BAF7-39ED3806ED91}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -22,9 +17,6 @@ Global
 		{2D23750B-085C-4E78-BAF7-39ED3806ED91}.Release|Win32.Build.0 = Release|Win32
 		{6CEBDBE1-C42B-41F1-A643-4C15FA95C968}.Debug|Win32.ActiveCfg = Debug
 		{6CEBDBE1-C42B-41F1-A643-4C15FA95C968}.Release|Win32.ActiveCfg = Release
-		{381F0A97-D3CB-4EDF-A940-7BF40FA937E3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{381F0A97-D3CB-4EDF-A940-7BF40FA937E3}.Release|Win32.ActiveCfg = Release|Win32
-		{381F0A97-D3CB-4EDF-A940-7BF40FA937E3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

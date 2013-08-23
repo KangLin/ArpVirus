@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Service.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
