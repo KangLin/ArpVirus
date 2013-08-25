@@ -18,11 +18,12 @@ int read_mac();
 int TimePolic();
 int clean();
 
-int main()
+int lib_main()
 {
 	int nRet = 0;
 	int nNum = 0;
-	
+
+	MessageBox(NULL, "ok", "ok", MB_OK);
 	nRet = init_info();
 	if(nRet)
 		return nRet;
@@ -31,10 +32,10 @@ int main()
     
 	if(hostList.size() == 0)
 		return -1;
-    printf("%s\n","正在扫描在线主机......");
+	printf(_T("%s\n"), "正在扫描在线主机......");
 	Sleep(2*1000);
-    printf("当前在线的主机数量%d\n",hostList.size());
-	printf("%s\n","正在使网段内所有主机断线......按ctrl+c键退出");
+	printf(_T("当前在线的主机数量%d\n"), hostList.size());
+	printf(_T("%s\n"), _T("正在使网段内所有主机断线......按ctrl+c键退出"));
 	//init_arp();
 	init_host_arp();
 
