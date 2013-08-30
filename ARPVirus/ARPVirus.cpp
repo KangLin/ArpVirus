@@ -23,7 +23,6 @@ int lib_main()
 	int nRet = 0;
 	int nNum = 0;
 
-	MessageBox(NULL, "ok", "ok", MB_OK);
 	nRet = init_info();
 	if(nRet)
 		return nRet;

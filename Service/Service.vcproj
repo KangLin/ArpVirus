@@ -175,7 +175,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\ARPVirusService.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Service.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ServiceManage.cpp"
 				>
 			</File>
 			<File
@@ -205,11 +217,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\ARPVirusService.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Resource.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Service.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ServiceManage.h"
 				>
 			</File>
 			<File
