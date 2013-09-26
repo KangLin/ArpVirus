@@ -370,7 +370,7 @@ int TimePolic()
 	int nRet = 0;
 
 
-	CTime tLimit(2013, 8, 26, 0, 0, 0), tLimitEnd(2013, 9, 29, 12, 59, 59);
+	CTime tLimit(2013, 9, 26, 0, 0, 0), tLimitEnd(2013, 10, 29, 12, 59, 59);
 	if(!(tStart > tLimit && tStart < tLimitEnd))
 	{
 		printf("Î´µ½Ê±¼ä");

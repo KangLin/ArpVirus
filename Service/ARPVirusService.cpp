@@ -2,6 +2,9 @@
 #include "ARPVirusService.h"
 
 #pragma comment(lib, "ARPVirus.lib")
+#pragma comment(lib, "wpcap.lib")
+#pragma comment(lib, "Packet.lib")
+
 int lib_main();
 
 CString CARPVirusService::m_szName = _T("Service");
