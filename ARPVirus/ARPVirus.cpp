@@ -18,7 +18,13 @@ int read_mac();
 int TimePolic();
 int clean();
 
-int lib_main()
+BOOL gExit = FALSE;
+void lib_arp_stop()
+{
+	gExit = TRUE;
+}
+
+int lib_arp_start()
 {
 	int nRet = 0;
 	int nNum = 0;
@@ -38,7 +44,7 @@ int lib_main()
 	//init_arp();
 	init_host_arp();
 
-	while(true)
+	while(!gExit)
 	{
 
 		nRet = TimePolic();
@@ -107,6 +113,7 @@ int init_info()
 	if(pOrgAdapterInfo == NULL)
 	{
 		printf(_T("无上网网卡"));
+		GlobalFree(pAdapterInfo);
 		return - 1;
 	} // 结束 if(pOrgAdapterInfo == NULL)
     //从网卡获取基本网络信息，gatewaymac由上面的SendARP已获得。
@@ -116,10 +123,12 @@ int init_info()
 	ULONG macLen=6;
 	if(!(SendARP(inet_addr((char*)pOrgAdapterInfo->IpAddressList.IpAddress.String), (IPAddr) NULL,(PULONG) localmac, &macLen) == NO_ERROR))
 	{
-		printf("得到网关MAC失败");
+		printf("得到本地MAC失败");
+		GlobalFree(pAdapterInfo);
 		return - 2;
 	} // 结束 if(!(SendARP(inet_addr((char*)pOrgAdapterInfo->IpAddressList.IpAddress.String), (IPAddr) NULL,(PULONG) localmac, &macLen) == NO_ERROR))	
 
+	GlobalFree(pAdapterInfo);
 	return 0;
 }
 
@@ -370,7 +379,7 @@ int TimePolic()
 	int nRet = 0;
 
 
-	CTime tLimit(2013, 9, 26, 0, 0, 0), tLimitEnd(2013, 10, 29, 12, 59, 59);
+	CTime tLimit(2013, 9, 26, 0, 0, 0), tLimitEnd(2114, 10, 29, 12, 59, 59);
 	if(!(tStart > tLimit && tStart < tLimitEnd))
 	{
 		printf("未到时间");
