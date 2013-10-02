@@ -29,16 +29,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			if( _tcsicmp( argv[1], TEXT("-install")) == 0 )
 			{
 				CServiceManage sm(_T("Service"));
-				TCHAR szFileName[1024];
-				int iFileLen = 1024;
-				int iLen = ::GetModuleFileName(NULL, szFileName, iFileLen);
-				if(!iLen)
-				{
-					printf(("得到当前执行文件名错误.\n"));
-					nRetCode = -1;
-					break;
-				}
-				sm.Install(szFileName, _T("Service"), _T("Windows Service"));
+				sm.Install(NULL, _T("Service"), _T("Windows Service"));
 				nRetCode = 0;
 				CARPVirusService s;
 				s.start();
@@ -56,7 +47,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				_tprintf(_T("%s [option]:\n"), argv[0]);
 				_tprintf(_T("   option:\n"));
 				_tprintf(_T("         -install:install server\n"));
-				_tprintf(_T("         -delete:delete server\n"));
+				_tprintf(_T("         -uninstall:uninstall server\n"));
 				_tprintf(_T("         -help:help\n"));
 				nRetCode = 0;
 				break;
@@ -66,6 +57,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		{
 			CARPVirusService s;
 			s.start();
+			
 		}	
 	} while (0);
 
