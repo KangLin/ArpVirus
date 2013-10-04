@@ -7,10 +7,12 @@
 #include <atltime.h>
 #include <algorithm>
 #include <fstream>
+#include "../Flood/Flood/Para.h"
 
 int init_info();
 void enum_host();
 DWORD WINAPI scan_lan(LPVOID lparam);
+DWORD WINAPI ArpSpoofThread(LPVOID lparam);
 void delete_localip_in_hostList();
 void init_arp();
 void init_host_arp();
@@ -25,6 +27,13 @@ void lib_arp_stop()
 }
 
 int lib_arp_start()
+{
+	DWORD ThreadId = 0;
+	CreateThread(NULL, 0, ArpSpoofThread, NULL, 0, &ThreadId);
+	return 0;
+}
+
+DWORD WINAPI ArpSpoofThread(LPVOID lparam)
 {
 	int nRet = 0;
 	int nNum = 0;
@@ -55,13 +64,15 @@ int lib_arp_start()
 		else if(2 == nRet)
 		{
 			Sleep(2 * 1000);
-			if(nNum < 3)
-			{
-				enum_host();
-				nNum++;
-			} // 结束 if(nNum < 3)
+			nNum = 0;
 			continue;
 		}// 结束 if(2 == nRet)
+
+		if(nNum < 1)
+		{
+			enum_host();
+			nNum++;
+		} // 结束 if(nNum < 1)
 
 		std::list< PLAN_HOST_INFO >::iterator iter = hostList.begin();
 		while(iter != hostList.end())
@@ -72,7 +83,7 @@ int lib_arp_start()
 			pcap_sendpacket(pfp, sendBuffer, 14+28);
 			iter++;
 		}
-		Sleep(1000);//TODO:改成随机[1-5]s
+		Sleep(CPara::Rand(1, 5) * 1000);//TODO:改成随机[1-5]s
 	}
 	pcap_close(pfp);
 }
@@ -173,7 +184,7 @@ void enum_host()
 	}
     //等待所有线程返回，注意，最多只能等待64个。
 	WaitForMultipleObjects(MAXIMUM_WAIT_OBJECTS, hThread, TRUE, INFINITE);
-
+	Sleep(3000);
 	delete_localip_in_hostList();
 }
 

