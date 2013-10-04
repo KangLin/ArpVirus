@@ -57,7 +57,6 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		{
 			CARPVirusService s;
 			s.start();
-			
 		}	
 	} while (0);
 
