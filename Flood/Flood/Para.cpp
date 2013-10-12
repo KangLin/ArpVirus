@@ -189,8 +189,36 @@ std::string CPara::GetModuleFile()
 	return szFilePath + "config.ini";
 }
 
+int CPara::GetConfigIni(char* pszSection, char* pszKey, int nDefault)
+{
+	return GetPrivateProfileInt(pszSection, pszKey, nDefault, GetModuleFile().c_str());
+}
+
+std::string CPara::GetConfigString(char *pszSection, char* pszKey, char *pszDefault)
+{
+	char buf[1024];
+	buf[0] = 0;
+	GetPrivateProfileString(pszSection, pszKey, pszDefault, buf, 1024, GetModuleFile().c_str());
+	return buf;
+}
+
 int CPara::Rand(int min, int max)
 {
 	//srand((unsigned) time(NULL)); //为了提高不重复的概率
 	return rand()%(max - min + 1) + min;                //使用时将m和n换为具体数即可
+}
+
+std::vector<std::string> CPara::SplitString(const char *pString, const char* pstrDelimit)
+{
+	std::vector<std::string> r;
+	char *token;
+	char *p = (char*)pString;
+	token = strtok(p, pstrDelimit);
+	while(token != NULL)
+	{
+		r.push_back(std::string(token));
+		token = strtok(NULL, pstrDelimit);
+	}
+
+	return r;
 }

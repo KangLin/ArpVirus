@@ -51,6 +51,11 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				_tprintf(_T("         -help:help\n"));
 				nRetCode = 0;
 				break;
+			}
+			else if(_tcsicmp(argv[1], TEXT("-run")) == 0)
+			{
+				CARPVirusService s;
+				s.serviceMain(argc, argv);
 			}// ½áÊø if(lstrcmpi(argv[1], TEXT("-help")) == 0) 
 		}
 		else

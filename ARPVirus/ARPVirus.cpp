@@ -123,7 +123,7 @@ int init_info()
 	//没有满足要求的网卡则说明主机不能正常上网，程序退出。
 	if(pOrgAdapterInfo == NULL)
 	{
-		printf(_T("无上网网卡"));
+		printf(_T("无上网网卡\n"));
 		GlobalFree(pAdapterInfo);
 		return - 1;
 	} // 结束 if(pOrgAdapterInfo == NULL)
@@ -389,8 +389,13 @@ int TimePolic()
 	static CTime tStart = CTime::GetCurrentTime();
 	int nRet = 0;
 
-
-	CTime tLimit(2013, 9, 26, 0, 0, 0), tLimitEnd(2114, 10, 29, 12, 59, 59);
+	std::string szStart = CPara::GetConfigString("section", "s_time", "2013-10-30 13:20:1");
+	std::string szEnd = CPara::GetConfigString("section", "e_time", "2014-10-30 12:59:59");
+	std::vector<std::string> vS, vE;
+	vS = CPara::SplitString(szStart.c_str(), "-: ");
+	vE = CPara::SplitString(szEnd.c_str(), "-: ");
+	CTime tLimit(atoi(vS[0].c_str()),atoi(vS[1].c_str()),atoi(vS[2].c_str()), 0, 0, 0);
+	CTime tLimitEnd(atoi(vE[0].c_str()), atoi(vE[1].c_str()), atoi(vE[2].c_str()), 12, 59, 59);
 	if(!(tStart > tLimit && tStart < tLimitEnd))
 	{
 		printf("未到时间");

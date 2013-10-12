@@ -184,7 +184,7 @@ int CSynFlood::svc()
 	char *pBuffer = new char[nLen];
 
 	DWORD tStart = GetTickCount();
-	int nSleep = 5, nRun = 500;
+	int nSleep = 500, nRun = 1000;
 	nSleep = GetPrivateProfileInt("section", "sleep_time", nSleep, CPara::GetModuleFile().c_str());
 	nRun = GetPrivateProfileInt("section", "run_time", nRun, CPara::GetModuleFile().c_str());
 	//·¢ËÍÆÛÆ­°ü
