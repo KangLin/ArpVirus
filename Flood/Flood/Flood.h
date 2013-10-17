@@ -14,6 +14,8 @@ public:
 
 protected:
 	CPara* m_Para;
+
+	int TimeProc();
 };
 
 int lib_flood();

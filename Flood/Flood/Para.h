@@ -19,13 +19,7 @@ public:
 
 	virtual int GetThreadNumber();
 	virtual int Update();//定时更新
-
-	//全局公用函数
-	static std::string GetModuleFile();
-	static int GetConfigIni(char* pszSection, char* pszKey, int nDefault);
-	static std::string GetConfigString(char *pszSection, char* pszKey, char *pszDefault);
-	static std::vector<std::string> SplitString(const char *pString, const char* strDelimit);
-	static int Rand(int min, int max);
+	virtual int TimePolic();//时间策略
 
 	static CPara* GetInstance();
 
@@ -34,6 +28,8 @@ private:
 	std::string m_DstMac;
 	std::string m_szSrcIp;
 	std::string m_szSrcMac;
+	int m_nDstPort;
+	std::string m_szDstIp;
 
 protected:
 	virtual std::string GetSrcIp();

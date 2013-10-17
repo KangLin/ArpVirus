@@ -39,7 +39,6 @@ CSynFlood g_Flood;
 
 int
 lib_flood_start()
-//ACE_TMAIN(int argc, ACE_TCHAR * argv[])
 {
 	g_Flood.open(NULL);
 

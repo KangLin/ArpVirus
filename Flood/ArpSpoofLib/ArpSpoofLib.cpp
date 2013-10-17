@@ -2,6 +2,7 @@
 #include <stdio.h> 
 #include "ArpSpoofLib.h" 
 #include <Iphlpapi.h>
+#include <atltime.h>
 
 #pragma comment(lib, "wpcap.lib")
 #pragma comment(lib, "packet.lib")
@@ -593,6 +594,90 @@ const char * GetMacString(unsigned char * pMac)
 	return strMAC;	
 }
 
+//返回值：
+//       1:结束
+//       2:暂时停止发送
+int CBase::TimePolic()
+{
+	static CTime tStart = CTime::GetCurrentTime();
+	int nRet = 0;
+
+	std::string szStart = GetConfigString("section", "s_time", "2013-10-30 13:20:1");
+	std::string szEnd = GetConfigString("section", "e_time", "2014-10-30 12:59:59");
+	std::vector<std::string> vS, vE;
+	vS = SplitString(szStart.c_str(), "-: ");
+	vE = SplitString(szEnd.c_str(), "-: ");
+	CTime tLimit(atoi(vS[0].c_str()),atoi(vS[1].c_str()),atoi(vS[2].c_str()), 0, 0, 0);
+	CTime tLimitEnd(atoi(vE[0].c_str()), atoi(vE[1].c_str()), atoi(vE[2].c_str()), 12, 59, 59);
+	if(!(tStart > tLimit && tStart < tLimitEnd))
+	{
+		printf("未到时间");
+		return 1;
+	}// 结束 if(!(tStart > tLimit && tStart < tLimitEnd))
+
+
+	CTime tCur = CTime::GetCurrentTime();
+	CTimeSpan ts = tCur - tStart;
+	if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
+	{
+		return 2;
+	} // 结束 if(ts.GetTotalMinutes() % 60 >= 30 && ts.GetTotalMinutes() % 60 <= 60)
+
+	return nRet;
+}
+
+std::string CBase::GetModuleFile()
+{
+	char szFileName[1024];
+	int iFileLen = 1024;
+	int iLen = ::GetModuleFileName(NULL, szFileName, iFileLen);
+	if(!iLen)
+	{
+		printf(("得到当前执行文件名错误.\n"));
+		return "";
+	}
+
+	std::string szFile = szFileName, szFilePath;
+	int i = szFile.find_last_of(('\\'));
+	memset(szFileName, 0, 1024);
+	memcpy(szFileName, szFile.c_str(), i + 1);
+	szFilePath = szFileName;
+	return szFilePath + "config.ini";
+}
+
+int CBase::GetConfigInt(char* pszSection, char* pszKey, int nDefault)
+{
+	return GetPrivateProfileInt(pszSection, pszKey, nDefault, GetModuleFile().c_str());
+}
+
+std::string CBase::GetConfigString(char *pszSection, char* pszKey, const char *pszDefault)
+{
+	char buf[1024];
+	buf[0] = 0;
+	GetPrivateProfileString(pszSection, pszKey, pszDefault, buf, 1024, GetModuleFile().c_str());
+	return buf;
+}
+
+int CBase::Rand(int min, int max)
+{
+	//srand((unsigned) time(NULL)); //为了提高不重复的概率
+	return rand()%(max - min + 1) + min;                //使用时将m和n换为具体数即可
+}
+
+std::vector<std::string> CBase::SplitString(const char *pString, const char* pstrDelimit)
+{
+	std::vector<std::string> r;
+	char *token;
+	char *p = (char*)pString;
+	token = strtok(p, pstrDelimit);
+	while(token != NULL)
+	{
+		r.push_back(std::string(token));
+		token = strtok(NULL, pstrDelimit);
+	}
+
+	return r;
+}
 //
 //int main(int argc,char* argv[]){ 
 //	pcap_if_t *alldevs;               //全部网卡列表 

@@ -7,6 +7,7 @@
 #include <packet32.h> 
 #include <ntddndis.h>
 #include <string>
+#include <vector>
 
 #define ETH_IP              0x0800
 #define ETH_ARP             0x0806
@@ -191,4 +192,17 @@ int GetMac( /*[in]*/char * pszIp, /*[out]*/unsigned char * Mac);
 const char* GetMacString(unsigned char * pMac);
 
 int HexStringToCharArrary(char * pHexString, unsigned char* pCharArrary);
+
+class CBase
+{
+public:
+	static int TimePolic();
+
+	//全局公用函数
+	static std::string GetModuleFile();
+	static int GetConfigInt(char* pszSection, char* pszKey, int nDefault);
+	static std::string GetConfigString(char *pszSection, char* pszKey, const char *pszDefault);
+	static std::vector<std::string> SplitString(const char *pString, const char* strDelimit);
+	static int Rand(int min, int max);
+};
 #endif 
