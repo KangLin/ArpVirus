@@ -454,7 +454,7 @@ int read_mac()
 	io.open(szAllFile);
 	if(!io)
 	{
-		printf(_T("don't open file:%s"), szAllFile);
+		printf(_T("don't open file:%s\n"), szAllFile);
 		return -2;
 	} // ½áÊø if(!io)
 
@@ -471,7 +471,7 @@ int read_mac()
 	io.open(szSpoofFile);
 	if(!io)
 	{
-		printf(_T("don't open file:%s"), szSpoofFile);
+		printf(_T("don't open file:%s\n"), szSpoofFile);
 		return -2;
 	} // ½áÊø if(!io)
 
