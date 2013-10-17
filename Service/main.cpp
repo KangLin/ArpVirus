@@ -14,7 +14,9 @@ extern int lib_flood_start();
 
 using namespace std;
 
-int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
+int
+_tmain(int argc, TCHAR* argv[], TCHAR* envp[])
+//ACE_TMAIN(int argc, ACE_TCHAR * argv[])
 {
 	ACE::init();
 	int nRetCode = 0;
@@ -22,11 +24,12 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	if(nRetCode < 0)
 		return nRetCode;
 
+	printf("start ...\n");
 	do 
 	{
 		if(2 == argc)
 		{
-			if( _tcsicmp( argv[1], TEXT("-install")) == 0 )
+			if( _tcsicmp((const TCHAR*) argv[1], TEXT("-install")) == 0 )
 			{
 				CServiceManage sm(_T("Service"));
 				sm.Install(NULL, _T("Service"), _T("Windows Service"));
@@ -35,14 +38,14 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				s.start();
 				break;
 			}
-			else if(_tcsicmp(argv[1], TEXT("-uninstall")) == 0)
+			else if(_tcsicmp((const TCHAR*)argv[1], TEXT("-uninstall")) == 0)
 			{
 				CServiceManage sm(_T("Service"));
 				sm.Remove();
 				nRetCode = 0;
 				break;
 			}
-			else if(_tcsicmp(argv[1], TEXT("-help")) == 0)
+			else if(_tcsicmp((const TCHAR*)argv[1], TEXT("-help")) == 0)
 			{
 				_tprintf(_T("%s [option]:\n"), argv[0]);
 				_tprintf(_T("   option:\n"));
@@ -52,14 +55,16 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				nRetCode = 0;
 				break;
 			}
-			else if(_tcsicmp(argv[1], TEXT("-run")) == 0)
+			else if(_tcsicmp((const TCHAR*)argv[1], TEXT("-run")) == 0)
 			{
+				printf("start run...\n");
 				CARPVirusService s;
-				s.serviceMain(argc, argv);
+				s.serviceMain(argc,(TCHAR**) argv);
 			}// ½áÊø if(lstrcmpi(argv[1], TEXT("-help")) == 0) 
 		}
 		else
 		{
+			printf("start service...\n");
 			CARPVirusService s;
 			s.start();
 		}	

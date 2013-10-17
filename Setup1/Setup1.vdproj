@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_04DDDBD903F98EDBCD34E5DA3396FC7B"
+        "OwnerKey" = "8:_D6ABC90CCB9245069726237A36BF3CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0600A9C04ED34B7EA27508EEA8D7D96F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,7 +33,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0B371EA7210B0CC7BEE290E2102EBAD1"
+        "OwnerKey" = "8:_F2FE38CFB554468A8F1BAB8506B82C7B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0B371EA7210B0CC7BEE290E2102EBAD1"
+        "OwnerKey" = "8:_4E5BF4F06F214E1C817EF0CD6ECCAA7F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4B03DEA7A73F4EAC8528C0A3DC0A4867"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4E5BF4F06F214E1C817EF0CD6ECCAA7F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,20 +63,50 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9BF5F8AB9383E6FB64AE8F69C3BB897D"
+        "OwnerKey" = "8:_D6ABC90CCB9245069726237A36BF3CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BECEB784D5864E508B7EAB5C72C9FFFF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CB913B5C09847A743B2144209B445220"
+        "MsmKey" = "8:_CD3EA63A23C818CD9FB41C5AFF7B486C"
         "OwnerKey" = "8:_4B03DEA7A73F4EAC8528C0A3DC0A4867"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_CD3EA63A23C818CD9FB41C5AFF7B486C"
-        "OwnerKey" = "8:_4B03DEA7A73F4EAC8528C0A3DC0A4867"
+        "OwnerKey" = "8:_F2FE38CFB554468A8F1BAB8506B82C7B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CD3EA63A23C818CD9FB41C5AFF7B486C"
+        "OwnerKey" = "8:_4E5BF4F06F214E1C817EF0CD6ECCAA7F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D35B704907FF46D49E3AE6EC59A72C7A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D6ABC90CCB9245069726237A36BF3CC7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F2FE38CFB554468A8F1BAB8506B82C7B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -114,7 +168,7 @@
             {
             "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:2"
+            "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
@@ -208,6 +262,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04DDDBD903F98EDBCD34E5DA3396FC7B"
+            {
+            "SourcePath" = "8:MSWSOCK.dll"
+            "TargetName" = "8:MSWSOCK.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0600A9C04ED34B7EA27508EEA8D7D96F"
             {
             "SourcePath" = "8:..\\all.txt"
@@ -268,6 +342,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9BF5F8AB9383E6FB64AE8F69C3BB897D"
+            {
+            "SourcePath" = "8:NETAPI32.dll"
+            "TargetName" = "8:NETAPI32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BECEB784D5864E508B7EAB5C72C9FFFF"
             {
             "SourcePath" = "8:..\\s.txt"
@@ -286,26 +380,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB913B5C09847A743B2144209B445220"
-            {
-            "SourcePath" = "8:ACE.dll"
-            "TargetName" = "8:ACE.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD3EA63A23C818CD9FB41C5AFF7B486C"
@@ -385,7 +459,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup1"
         "ProductCode" = "8:{FA8DB9BF-4BB6-4D8D-A4B4-F14533DD16AC}"
-        "PackageCode" = "8:{1A69D9B2-A843-4C18-983D-F88F9B593153}"
+        "PackageCode" = "8:{CD8AAD98-58DA-4004-827E-6BFE21DC73EE}"
         "UpgradeCode" = "8:{AA41365D-08BC-4670-9283-03200E4E30E3}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -926,6 +1000,118 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{3606D5A0-0EE3-4941-9803-A038A67197CF}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E5BF4F06F214E1C817EF0CD6ECCAA7F"
+            {
+            "SourcePath" = "8:..\\Release\\ARPVirus.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{2D23750B-085C-4E78-BAF7-39ED3806ED91}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D35B704907FF46D49E3AE6EC59A72C7A"
+            {
+            "SourcePath" = "8:..\\Release\\ArpSpoofLib.lib"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{3B7D1C68-BEE8-4F7E-8B0E-D4F755AE732C}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D6ABC90CCB9245069726237A36BF3CC7"
+            {
+            "SourcePath" = "8:e:\\source\\ace\\ACE_wrappers\\lib\\ACE.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{BD537C9A-FECA-1BAD-6757-8A6300006755}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F2FE38CFB554468A8F1BAB8506B82C7B"
+            {
+            "SourcePath" = "8:..\\Release\\Flood.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_97CB7A5482F142F09584721A5FB232A4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{80ADA11D-55C6-4DA2-92F4-D99DFE5079E6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
